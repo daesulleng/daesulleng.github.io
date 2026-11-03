@@ -49,10 +49,10 @@
   document.getElementById('story-prev').addEventListener('click', () => showStory(storyIndex - 1));
   document.getElementById('story-next').addEventListener('click', () => showStory(storyIndex + 1));
   const steps = [
-    {title:'내 이야기를 들려주세요.',description:'가입 정보와 소개를 바탕으로 프로필을 준비해요. 학과·학부는 공개 여부를 선택할 수 있어요.',chips:['나의 소개','학과 공개 선택'],next:'다음: 취향 선택',art:'profile'},
-    {title:'가고 싶은 곳을 골라요.',description:'최대 10곳의 가게와 만날 학교 범위를 선택해요. 공통으로 가고 싶은 가게가 있는 상대를 찾아요.',chips:['최대 10곳','우리 학교 또는 학교 선택'],next:'다음: 신청과 수락',art:'food'},
-    {title:'같은 취향에 인사를 건네요.',description:'공통 가게를 확인하고 포인트로 신청해요. 상대방도 수락하면 두 사람의 대화가 시작돼요.',chips:['공통 가게 확인','상호 수락'],next:'다음: 대화와 약속',art:'accept'},
-    {title:'대화하고, 만나고, 마무리까지.',description:'대화를 나누며 장소와 시간을 정해요. 만남 후에는 완료할 수 있고, 원하지 않으면 취소할 수 있어요.',chips:['대화·약속','완료 또는 취소'],next:'처음부터 다시 보기',art:'chat'}
+    {title:'내 이야기를 들려주세요.',description:'학생증 승인·비바톤 성인인증 후 시작해요. 닉네임·나이·성별은 가입 정보를 사용하며 학과는 공개 여부를 선택해요.',chips:['나의 소개','학과 공개 선택'],next:'다음: 취향 선택',art:'profile'},
+    {title:'함께 먹고 싶은 메뉴는?',description:'음식 카테고리를 1~3개 선택해요. 하나 이상 겹치는 이성 회원을 학교·연령·모임 조건 안에서 추천해요.',chips:['카테고리 최대 3개','가게 선택은 매칭 후'],next:'다음: 신청과 수락',art:'food'},
+    {title:'같은 취향에 인사를 건네요.',description:'후보를 살펴보는 것은 무료. 마음에 드는 상대에게 50P로 신청해요. 거절·취소 시 반환하지 않으며 수락 후 채팅이 열려요.',chips:['요청 성공 시 50P','상호 수락 후 대화'],next:'다음: 대화와 약속',art:'accept'},
+    {title:'대화하고, 만나고, 마무리까지.',description:'등록 가게를 고르거나 상의한 장소를 직접 입력해요. 날짜·장소를 서로 확인하면 확정! 변경 시 재확인하고, 만남 후 양쪽이 완료해요.',chips:['가게 선택 또는 직접 입력','서로 확인하면 약속 확정'],next:'처음부터 다시 보기',art:'chat'}
   ];
   const stepTabs = [...document.querySelectorAll('[data-step]')];
   let stepIndex = 0;
