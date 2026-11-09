@@ -28,7 +28,10 @@ const downloadArea = document.getElementById('download-links');
 [ ['appStoreUrl', 'App Store'], ['googlePlayUrl', 'Google Play'], ['serviceUrl', '웹에서 시작하기'] ].forEach(([key, label], index) => {
   const url = safeHttps(config[key]);
   if (!url) return;
+  const original = index < 2 ? downloadArea.children[index] : null;
   const link = document.createElement('a'); link.className = 'store-badge available';
+  const symbol = original?.querySelector('.store-symbol, svg');
+  if (symbol) link.append(symbol.cloneNode(true));
   link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
   const caption = document.createElement('small'); caption.textContent = index < 2 ? '다운로드' : '대슐랭가이드';
   const title = document.createElement('b'); title.textContent = label + ' ↗';
@@ -37,8 +40,8 @@ const downloadArea = document.getElementById('download-links');
 });
 if (config.launched && ['appStoreUrl', 'googlePlayUrl', 'serviceUrl'].some(key => safeHttps(config[key]))) {
   document.getElementById('launch-status').textContent = 'NOW OPEN';
-  document.getElementById('launch-title').textContent = '이제, 학교 앞에서 만나요.';
-  document.getElementById('launch-description').textContent = '대슐랭가이드에서 대학가의 새로운 즐거움을 만나보세요.';
+  document.getElementById('launch-title').textContent = '맛있는 대학생활, 지금 시작해요.';
+  document.getElementById('launch-description').textContent = 'iPhone에서 대슐랭가이드를 다운로드하세요. Android는 출시 준비 중이에요.';
   document.querySelector('.campus-label').lastChild.textContent = ' 정식 서비스 오픈';
 }
 document.getElementById('copy-link').addEventListener('click', async () => {
