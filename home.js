@@ -9,7 +9,7 @@
     return node;
   };
   function link(action, id) {
-    const query = new URLSearchParams({action});
+    const query = new URLSearchParams({action, v:window.DG_WEB_REVISION || ''});
     if (id) query.set('id', id);
     return 'web/?' + query;
   }
