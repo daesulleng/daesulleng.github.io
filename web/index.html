@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/web/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="대학교 앞 상권 정보와 커뮤니티 대슐랭가이드">
+  <meta name="theme-color" content="#BB2833">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="대슐랭가이드">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>대슐랭가이드</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    #app-splash { position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 24px; background: #fff; color: #BB2833;
+      font: 700 24px system-ui, sans-serif; margin: 0; }
+    #app-splash img { width: 112px; height: 112px; object-fit: contain; }
+  </style>
+</head>
+<body>
+  <div id="app-splash" role="status" aria-label="대슐랭가이드 시작 중">
+    <img src="splash-logo.png" alt=""><span>대슐랭가이드</span>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      document.getElementById('app-splash')?.remove();
+    }, {once: true});
+  </script>
+  <script>
+    // Registration does not request notification permission. Permission is
+    // requested only when the signed-in user enables push in settings.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('firebase-messaging-sw.js', {
+          scope: '/firebase-cloud-messaging-push-scope',
+        }).catch(function () { /* The in-app notification centre remains usable. */ });
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

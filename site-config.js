@@ -3,5 +3,5 @@ window.DAESULLAENG_CONFIG = Object.freeze({
   launched: true,
   appStoreUrl: 'https://apps.apple.com/kr/app/id6830740605',
   googlePlayUrl: '',
-  serviceUrl: '',
+  serviceUrl: 'https://daesulleng.github.io/web/',
 });
