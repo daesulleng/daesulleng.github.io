@@ -3,4 +3,5 @@ window.DG_PUBLIC_FEED = Object.freeze({"url": "https://dqnfuhyfcygexckhotmz.supa
 
 
 
-window.DG_WEB_REVISION = "0567a4f1b1eab01b";
+
+window.DG_WEB_REVISION = "3d66f93303abf1aa";

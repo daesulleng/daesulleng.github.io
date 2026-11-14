@@ -1,0 +1,10 @@
+HEIC/HEIF decoding uses heic-to 1.6.7 and libheif 1.23.7.
+heic-to: https://github.com/hoppergee/heic-to (LGPL-3.0-or-later)
+libheif: https://github.com/strukturag/libheif (LGPL-3.0)
+libde265: https://github.com/strukturag/libde265 (LGPL-3.0)
+
+libheif.js is the unmodified CSP source shipped in heic-to 1.6.7.
+../heic-worker.js is a readable adaptation of its src/worker.js, adding bounds
+and transferable buffers. It is distributed under LGPL-3.0-or-later.
+The library is loaded dynamically as a replaceable separate JavaScript module.
+See LICENSE.txt and GPL-3.0.txt. No user photos are sent to these projects.
