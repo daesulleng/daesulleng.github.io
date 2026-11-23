@@ -72,19 +72,19 @@
     }
   }
 
-  window.dgPickPhoto = (camera = false) => new Promise((resolve, reject) => {
+  const pickPhotos = (camera = false, maxImages = 1, multiple = false) => new Promise((resolve, reject) => {
     if (busy) { resolve(null); return; }
     busy = true;
     const input = document.createElement('input'); input.type = 'file';
     input.accept = 'image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif';
-    input.style.display = 'none';
+    input.style.display = 'none'; input.multiple = multiple;
     if (camera) input.setAttribute('capture', 'environment');
     document.body.append(input);
     const done = value => { busy = false; input.remove(); resolve(value); };
     input.addEventListener('cancel', () => done(null), {once: true});
     input.addEventListener('change', async () => {
-      const file = input.files?.[0];
-      if (!file) { done(null); return; }
+      const files = Array.from(input.files || []);
+      if (!files.length) { done(null); return; }
       const abort = new AbortController();
       const dialog = document.createElement('dialog');
       dialog.setAttribute('aria-label', '사진 준비');
@@ -96,8 +96,13 @@
       cancel.onclick = () => abort.abort(); dialog.addEventListener('cancel', () => abort.abort());
       dialog.append(title, status, caption, cancel); document.body.append(dialog); dialog.showModal();
       try {
-        const output = await normalizePhoto(file, abort.signal, status);
-        done(abort.signal.aborted ? null : output);
+        if (files.length > maxImages) throw new Error(`사진을 ${maxImages}장까지 선택해 주세요.`);
+        const output = [];
+        for (let i = 0; i < files.length; i++) {
+          title.textContent = `사진 준비 중 · ${i + 1}/${files.length}`;
+          output.push(await normalizePhoto(files[i], abort.signal, status));
+        }
+        done(abort.signal.aborted ? null : multiple ? output : output[0]);
       } catch (error) {
         if (error.name === 'AbortError') done(null);
         else {
@@ -111,4 +116,6 @@
     }, {once: true});
     input.click();
   });
+  window.dgPickPhoto = (camera = false) => pickPhotos(camera, 1, false);
+  window.dgPickPhotos = (maxImages = 10) => pickPhotos(false, Math.max(1, Math.min(10, maxImages)), true);
 })();
